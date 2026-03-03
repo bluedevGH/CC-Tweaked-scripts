@@ -10,14 +10,14 @@ if x then
     file.writeLine(z)
     file.close()
     print("coords saved successfully")
-    print("x:" .. x .. " Y: " .. y .. " Z: " .. z ..)
+    print("x: ", x, "y: ", y, "z: ", z)
 else
     print("error - couldnt get gps signal")
 
     if fs.exists(fileName) then
         local file = fs.open(fileName, "r")
         x = tonumber(file.readLine())
-        print("using cached x: " .. x)
+        print("using cached x: ", x)
         file.close()
     end
 end
