@@ -1,23 +1,15 @@
-local fileName = "pos_data"
+local myName = "configme"
+local x,y,z = gps.locate
 
-print("searching for gps satellites") -- need to make these
-local x, y, z = gps.locate(5)
+rednet.open("back") -- all modems need to be on back of device
+rednet.host("locateMe", myName)
 
-if x then
-    local file = fs.open(fileName, "w")
-    file.writeLine(x)
-    file.writeLine(y)
-    file.writeLine(z)
-    file.close()
-    print("coords saved successfully")
-    print("x: ", x, "y: ", y, "z: ", z)
-else
-    print("error - couldnt get gps signal")
+print("waiting for location reqs")
 
-    if fs.exists(fileName) then
-        local file = fs.open(fileName, "r")
-        x = tonumber(file.readLine())
-        print("using cached x: ", x)
-        file.close()
+while true do
+    local id, msg = rednet.receive("locateMe")
+    if msg == "whereAt" then
+        rednet.send(id, {x,y,z})
+        print("sent coords to computer #" .. id)
     end
 end
