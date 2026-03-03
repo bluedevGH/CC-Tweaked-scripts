@@ -13,6 +13,7 @@ while true do
     print("type exit to exit the program\n")
     write("enter station name: ")
     local targetName = read()
+    local targetID = rednet.lookup("locateMe", targetName)
 
     if targetName == "exit" then break end
 
