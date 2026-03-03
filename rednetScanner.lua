@@ -1,4 +1,4 @@
-rendet.open("back")
+rednet.open("back")
 print("scanning for all local hosts")
 local ids = {rednet.lookup("locateMe")}
 
