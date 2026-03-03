@@ -1,4 +1,4 @@
-rednet.open("back") -- might not work on pocket device
+rednet.open("back") -- this does infact work on pocket devices
 
 print("locating self")
 local myX, myY, myZ = gps.locate(5)
